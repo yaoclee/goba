@@ -44,3 +44,10 @@ class SignUpItem(models.Model):
     settlement = models.CharField(verbose_name=u'结算方式', max_length=1, choices=SELECT_SETTLEMENT, blank=True)
     limitations = models.IntegerField(u'每人限购', null=True, blank=True)
     classification = models.CharField(verbose_name=u'类目', max_length=2, choices=SELECT_CLASSIFICATION, blank=True)
+    
+    class Meta:
+        verbose_name = u"添加报名"
+        verbose_name_plural = u"添加报名"
+    
+    def __unicode__(self):
+        return self.name

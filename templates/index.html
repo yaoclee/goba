@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% load static %}﻿
 <html lang="zh-CN">
   <head>
@@ -13,7 +13,9 @@
     <title>购了么运营管理</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/forms.css' %}" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -79,137 +81,117 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <h2 class="page-header">添加商品</h2>
 
 
-          <h2 class="sub-header">Section title</h2>
+          <!-- <h2 class="sub-header">Section title</h2> -->
           <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+		  
+		  <fieldset class="module aligned">
+		  <form role="form">
+			<div id="content-main">
+                <form enctype="multipart/form-data" action="" method="post" id="signupitem_form"><input type='hidden' name='csrfmiddlewaretoken' value='eC5JHund84Xs5skzvUlqhjx3p95V9L7Q' />
+                <div>
+                  <fieldset class="module aligned ">
+                    <div class="form-row field-activity">        
+                        <div>
+                          <label for="id_activity">选择活动:</label>
+                          <select id="id_activity" name="activity">
+                            <option value="" selected="selected">---------</option>
+                            <option value="0">限时特卖</option>
+                            <option value="1">1元抢购</option>
+                            <option value="2">新人专享</option>
+                            <option value="3">9块9</option>
+                          </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row field-link">
+                        <div>
+                            <label for="id_link" class="required">链接:</label>
+                            <input type="text" id="id_link" maxlength="200" size="100" name="link" type="text" />
+                            <input type="submit" value="获取返利链接" class="default" name="save" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-row field-name">
+                        <div>
+                            <label for="id_name" class="required">标题:</label>
+                            <input type="text" id="id_name" maxlength="200" size="100" name="name" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="form-row field-price">
+                        <div>
+                            <label for="id_price" class="required">普通价:</label>
+                                <input id="id_price" name="price" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="form-row field-price_activity">
+                         <div>
+                             <label for="id_price_activity">活动价:</label>
+                             <input id="id_price_activity" name="price_activity" type="text" />
+                         </div>
+                     </div>
+                    
+                     <div class="form-row field-commision">
+                         <div>
+                            <label for="id_commision">佣金:</label>
+                            <input id="id_commision" name="commision" type="text" />
+                         </div>
+                     </div>
+                    
+                     <div class="form-row field-settlement">
+                        <div>
+                            <label for="id_settlement">结算方式:</label>
+                            <select id="id_settlement" name="settlement">
+                                <option value="" selected="selected">---------</option>
+                                <option value="0">平台扣款</option>
+                                <option value="1">淘宝扣款</option>
+                            </select>
+                        </div>
+                     </div>
+                    
+                     <div class="form-row field-limitations">
+                        <div>
+                            <label for="id_limitations">每人限购:</label>
+                            <input class="vIntegerField" id="id_limitations" name="limitations" type="text" />
+                        </div>
+                     </div>
+                    
+                     <div class="form-row field-classification">
+                        <div>
+                            <label for="id_classification">类目:</label>
+                            <select id="id_classification" name="classification">
+                                <option value="" selected="selected">---------</option>
+                                <option value="0">女装</option>
+                                <option value="1">男装</option>
+                                <option value="2">母婴</option>
+                                <option value="3">内衣</option>
+                                <option value="4">食品</option>
+                                <option value="5">美妆</option>
+                                <option value="6">箱包</option>
+                                <option value="7">鞋帽</option>
+                                <option value="8">珠宝</option>
+                                <option value="9">配饰</option>
+                                <option value="10">文体</option>
+                                <option value="11">家电</option>
+                                <option value="12">居家百货</option>
+                                <option value="13">家装家纺</option>
+                                <option value="14">手机数码</option>
+                                <option value="15">户外运动</option>
+                            </select>
+                        </div>
+                     </div>
+                 </fieldset>           
+               <div class="submit-row">
+				 <input type="submit" value="保存" class="default" name="_save" />
+				 <input type="submit" value="保存并增加另一个" name="_addanother" />
+				 <input type="submit" value="保存并继续编辑" name="_continue" />
+		   	   </div>
+		   </form>
+	  	</div>
         </div>
       </div>
     </div>
