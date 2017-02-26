@@ -14,7 +14,7 @@ SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 
-TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'template')
+TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 MEDIA_PATH = os.path.join(PROJECT_PATH, 'media')
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'goba.sqlite')
