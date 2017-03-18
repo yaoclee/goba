@@ -34,12 +34,16 @@ SELECT_CLASSIFICATION = (
     ('15', u'户外运动'),
 )
 
+def item_img_folder(insntance, filename):
+    return "images/%s/%s" % (insntance.id, filename)
+
 class SignUpItem(models.Model):
     activity = models.CharField(verbose_name=u'选择活动', max_length=1, choices=SELECT_ACTIVITY, blank=True)
     link = models.CharField(u'链接', max_length=200, null=False, blank=False)
     name = models.CharField(u'标题', max_length=200, null=False, blank=False)
     price = models.DecimalField(u'普通价', max_digits=6, decimal_places=2, null=False, blank=False)
     price_activity = models.DecimalField(u'活动价', max_digits=6, decimal_places=2, null=True, blank=True)
+    img = models.ImageField(u'图片', upload_to=item_img_folder);
     commision = models.DecimalField(u'佣金',max_digits=6, decimal_places=2, null=True, blank=True)
     settlement = models.CharField(verbose_name=u'结算方式', max_length=1, choices=SELECT_SETTLEMENT, blank=True)
     limitations = models.IntegerField(u'每人限购', null=True, blank=True)
