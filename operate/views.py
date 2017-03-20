@@ -17,7 +17,7 @@ def get_all_items(request):
     for sign_up_item in sign_up_items:
         item = {u'活动' : sign_up_item.activity, 
                 u'链接' : sign_up_item.link.encode('utf-8'),
-                u'标题' : sign_up_item.name,
+                u'标题' : sign_up_item.name.encode('utf-8'),
                 u'价格' : str(sign_up_item.price),
                 u'活动价格' : str(sign_up_item.price_activity),
                 u'图片' : 'media/' + str(sign_up_item.img),
