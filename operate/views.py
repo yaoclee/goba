@@ -4,6 +4,10 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response
 from operate.models import SignUpItem
 
+import sys
+reload(sys)
+sys.setdefaultencoding("utf-8")
+
 def index(request):
     context = RequestContext(request)
     return render_to_response("index.html", context)
@@ -27,7 +31,7 @@ def get_all_items(request):
                 }
         items.append(item)
     
-    return HttpResponse(json.dumps(items), content_type='application/json')
+    return HttpResponse(json.dumps(items, ensure_ascii=False, encoding='utf-8'), content_type='application/json')
 
 def get_all_items_en(request):
     print "ok"
@@ -47,4 +51,4 @@ def get_all_items_en(request):
                 }
         items.append(item)
     
-    return HttpResponse(json.dumps(items), content_type='application/json')
+    return HttpResponse(json.dumps(items, ensure_ascii=False, encoding='utf-8'), content_type='application/json')
