@@ -5,7 +5,6 @@ from django.shortcuts import render_to_response
 from operate.models import SignUpItem
 
 import sys
-from scipy.signal import sigtools
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
