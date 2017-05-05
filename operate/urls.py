@@ -12,6 +12,7 @@ urlpatterns = patterns('',
         url(r'^$', views.index, name='index'),
         url(r'^get-all-items/$', views.get_all_items, name='get_all_items'),
         url(r'^get-all-items-en/$', views.get_all_items_en, name='get_all_items_en'),
+        url(r'^handle/$', views.handle, name='handle'),
 
         #url(r'^login/$', views.user_login, name='login'),
 )

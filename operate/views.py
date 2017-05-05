@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from operate.models import SignUpItem
 
 import sys
+from scipy.signal import sigtools
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -52,3 +53,27 @@ def get_all_items_en(request):
         items.append(item)
     
     return HttpResponse(json.dumps(items, ensure_ascii=False, encoding='utf-8'), content_type='application/json')
+
+import hashlib
+def handle(request):
+    if request.method == 'GET':
+        signature = request.GET["signature"]
+        timestamp = request.GET["timestamp"]
+        nonce = request.GET["nonce"]
+        echostr = request.Get["echostr"]
+        token = 'hello2017'
+
+        li = [token, timestamp, nonce]
+        li.sort()
+        sha1 = hashlib.sha1()
+        map(sha1.update, li)
+        hashcode = sha1.hexdigest()
+        print "handle/GET func: hashcode, signature: ", hashcode, signature
+        if hashcode == signature:
+            return echostr
+        else:
+            return ""
+    return ""
+        
+
+
