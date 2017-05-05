@@ -19,7 +19,7 @@ def get_all_items(request):
     items = []
     
     for sign_up_item in sign_up_items:
-        item = {u'活动' : sign_up_item.activity, 
+        item = {u'活动' : sign_up_item.get_activity_display(), 
                 u'链接' : sign_up_item.link.encode('utf-8'),
                 u'标题' : sign_up_item.name.encode('utf-8'),
                 u'价格' : str(sign_up_item.price),
@@ -27,7 +27,7 @@ def get_all_items(request):
                 u'图片' : 'media/' + str(sign_up_item.img),
                 u'佣金比例' : str(sign_up_item.commision),
                 u'每人限购' : str(sign_up_item.limitations),
-                u'类目' : sign_up_item.classification
+                u'类目' : sign_up_item.get_classification_display(),
                 }
         items.append(item)
     
@@ -39,7 +39,7 @@ def get_all_items_en(request):
     items = []
     
     for sign_up_item in sign_up_items:
-        item = {'activity': sign_up_item.activity, 
+        item = {'activity': sign_up_item.get_activity_display(), 
                 'link': sign_up_item.link,
                 'name': sign_up_item.name,
                 'price' : str(sign_up_item.price),
@@ -47,7 +47,7 @@ def get_all_items_en(request):
                 'image' : 'media/' + str(sign_up_item.img),
                 'ratio' : str(sign_up_item.commision),
                 'count' : str(sign_up_item.limitations),
-                'classification' : sign_up_item.classification
+                'classification' : sign_up_item.get_classification_display(),
                 }
         items.append(item)
     
