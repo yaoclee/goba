@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from operate.models import SignUpItem
 
 import sys
+from win32gui import ReplyMessage
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -54,12 +55,14 @@ def get_all_items_en(request):
     return HttpResponse(json.dumps(items, ensure_ascii=False, encoding='utf-8'), content_type='application/json')
 
 import hashlib
+import receive
+import reply
 def handle(request):
     if request.method == 'GET':
         signature = request.GET["signature"]
         timestamp = request.GET["timestamp"]
         nonce = request.GET["nonce"]
-        echostr = request.Get["echostr"]
+        echostr = request.GET["echostr"]
         token = 'hello2017'
 
         li = [token, timestamp, nonce]
@@ -69,10 +72,23 @@ def handle(request):
         hashcode = sha1.hexdigest()
         print "handle/GET func: hashcode, signature: ", hashcode, signature
         if hashcode == signature:
-            return echostr
-        else:
-            return ""
-    return ""
+            return HttpResponse(echostr)
+    else: #handle post message
+        webData = request.POST
+        print "Handle POST webdata is:", webData
+        recMsg = receive.parse_xml(webData)
+        if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
+            toUser = recMsg.FromUserName
+            fromUser = recMsg.ToUserName
+            content = "test reply from developer"
+            replyMsg = reply.TextMsg(toUser, fromUser, content)
+            return HttpResponse(replyMsg.send())
+            
+
+        
+
+
+    
         
 
 
