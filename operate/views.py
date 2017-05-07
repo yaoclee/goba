@@ -56,23 +56,24 @@ def get_all_items_en(request):
 import hashlib
 def handle(request):
     if request.method == 'GET':
-        signature = request.GET["signature"]
-        timestamp = request.GET["timestamp"]
-        nonce = request.GET["nonce"]
-        echostr = request.Get["echostr"]
+        signature = request.GET.get("signature", None)
+        timestamp = request.GET.get("timestamp", None)
+        nonce = request.GET.get("nonce", None)
+        echostr = request.GET.get("echostr", None)
         token = 'hello2017'
 
         li = [token, timestamp, nonce]
         li.sort()
-        sha1 = hashlib.sha1()
-        map(sha1.update, li)
-        hashcode = sha1.hexdigest()
+        #sha1 = hashlib.sha1()
+        #map(sha1.update, li)
+        hashcode = "%s%s%s" % tuple(li)
+        hashcode = hashlib.sha1(hashcode).hexdigest()
         print "handle/GET func: hashcode, signature: ", hashcode, signature
         if hashcode == signature:
-            return echostr
+            return HttpResponse(echostr, content_type="text/plain")
         else:
-            return ""
-    return ""
+            return HttpResponse(None, content_type="text/plain")
+    return HttpResponse("weixin index")
         
 
 
