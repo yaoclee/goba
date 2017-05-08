@@ -5,7 +5,6 @@ from django.shortcuts import render_to_response
 from operate.models import SignUpItem
 
 import sys
-from win32gui import ReplyMessage
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
@@ -57,8 +56,14 @@ def get_all_items_en(request):
 import hashlib
 import receive
 import reply
+
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def handle(request):
+    print "################in func handle ###############"
     if request.method == 'GET':
+        print "################in func GET ###############"
         signature = request.GET.get("signature", None)
         timestamp = request.GET.get("timestamp", None)
         nonce = request.GET.get("nonce", None)
@@ -76,8 +81,9 @@ def handle(request):
             return HttpResponse(echostr, content_type="text/plain")
         else:
             return HttpResponse(None, content_type="text/plain")
-    else: #handle post message
-        webData = request.POST
+    elif request.method == 'POST': 
+        print "################in func POST ###############"
+        webData = request.raw_post_data
         print "Handle POST webdata is:", webData
         recMsg = receive.parse_xml(webData)
         if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
@@ -86,4 +92,4 @@ def handle(request):
             content = "test reply from developer"
             replyMsg = reply.TextMsg(toUser, fromUser, content)
             return HttpResponse(replyMsg.send())
-            
+        return HttpResponse(None);
