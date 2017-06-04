@@ -89,7 +89,7 @@ def handle(request):
         if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
             toUser = recMsg.FromUserName
             fromUser = recMsg.ToUserName
-            content = "test reply from developer"
+            content = u"您好，请输入咨询的服务"
             replyMsg = reply.TextMsg(toUser, fromUser, content)
             return HttpResponse(replyMsg.send())
         return HttpResponse(None);
