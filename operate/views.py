@@ -86,10 +86,20 @@ def handle(request):
         webData = request.raw_post_data
         print "Handle POST webdata is:", webData
         recMsg = receive.parse_xml(webData)
-        if isinstance(recMsg, receive.Msg) and recMsg.MsgType == "text":
+        if isinstance(recMsg, receive.Msg): #and recMsg.MsgType == "text":
             toUser = recMsg.FromUserName
             fromUser = recMsg.ToUserName
-            content = u"您好，请输入咨询的服务"
-            replyMsg = reply.TextMsg(toUser, fromUser, content)
-            return HttpResponse(replyMsg.send())
+            if recMsg.MsgType == 'text':
+                content = u"您好，请输入咨询的服务"
+                replyMsg = reply.TextMsg(toUser, fromUser, content)
+                return HttpResponse(replyMsg.send())
+            elif recMsg.MsgType == 'image':
+                mediaId = recMsg.MediaId
+                replyMsg = reply.ImageMsg(toUser, fromUser, mediaId)
+                print "--------------------"
+                print replyMsg.send()
+                return HttpResponse(replyMsg.send())
+            else:
+                print "not handling"
+                return HttpResponse(reply.Msg().send())
         return HttpResponse(None);
